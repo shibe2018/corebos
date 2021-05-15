@@ -103,7 +103,8 @@ function vtTaskEdit($adb, $request, $current_language, $app_strings) {
 		} else {
 			$direction = 'after';
 		}
-		$smarty->assign('trigger', array('days'=>$days, 'direction'=>$direction, 'field'=>$trigger['field']));
+		$hours = $trigger['hours'];
+		$smarty->assign('trigger', array('days'=>$days, 'hours'=>$hours, 'direction'=>$direction, 'field'=>$trigger['field']));
 	}
 	$metaVariables = $task->getMetaVariables();
 
