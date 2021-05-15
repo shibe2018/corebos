@@ -118,8 +118,11 @@
 							<div class="slds-col slds-size_1-of-3 slds-text-align_center">
 								<div class="slds-form-element">
 									<div class="slds-form-element__control slds-input-has-fixed-addon">
-										<input type="text" name="select_date_days" value="{if isset($trigger.days)}{$trigger.days}{/if}" id="select_date_days" class="slds-input">
-										<span class="slds-form-element__addon" id="fixed-text-addon-post"> {$MOD.LBL_DAYS} </span>
+										<input type="text" name="select_date_days" value="{if isset($trigger.days)}{$trigger.days}{elseif isset($trigger.hours)}{$trigger.hours}{/if}" id="select_date_days" class="slds-input">
+										<select class="slds-select slds-page-header__meta-text" name="select_days_hours_option" id="select_days_hours_option" onselect="evaluatedatehoursoptions();">
+											<option {if isset($trigger.days) && $trigger.days eq 'days'}selected{/if} value='days'>{$MOD.LBL_DAYS}</option>
+											<option {if isset($trigger.hours) && $trigger.hours eq 'hours'}selected{/if} value='hours'>{$MOD.LBL_HOURS}</option>
+										</select>
 									</div>
 								</div>
 							</div>
