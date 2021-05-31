@@ -183,6 +183,7 @@ class DefineGlobalVariables extends cbupdaterWorker {
 				'Import_Launch_EventsAndWorkflows',
 				'Import_LeaveUserReferenceFieldEmpty',
 				'Export_Field_Separator_Symbol',
+				'Comments_Export_Format',
 				'Export_RelatedField_GetValueFrom',
 				'Export_RelatedField_NameForSearch',
 				'Lead_Convert_TransferToAccount',
