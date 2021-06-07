@@ -241,8 +241,7 @@ function export($type, $format = 'CSV') {
 		dumpRowsToCSV($type, $__processor, $CSV_Separator, $columnsToExport, $result, $focus);
 	}
 	if ($format == 'XLS') {
-		$dumprows = dumpRowsToXLS($type, $__processor, $columnsToExport, $translated_fields_array, $result);
-		return $dumprows;
+		return dumpRowsToXLS($type, $__processor, $columnsToExport, $translated_fields_array, $result);;
 	}
 
 	$log->debug('< export');
@@ -252,10 +251,12 @@ function export($type, $format = 'CSV') {
 if (isset($_REQUEST['exportfile']) && $_REQUEST['exportfile']=='exportexcelfile') {
 	global $root_directory, $cache_dir;
 	$fname = tempnam($root_directory.$cache_dir, 'excel.xls');
-	export(vtlib_purify($_REQUEST['module']), 'XLS')->save($fname);
+	$xlsobject = export(vtlib_purify($_REQUEST['module']), 'XLS');
+	$xlsobject->save($fname);
+	$moduleName = getTranslatedString($_REQUEST['module'], $_REQUEST['module']);
 	header('Content-Type: application/x-msexcel');
 	header('Content-Length: '.@filesize($fname));
-	header('Content-disposition: attachment; filename="'.$_REQUEST['module'].'.xls"');
+	header('Content-disposition: attachment; filename="'.$moduleName.'.xls"');
 	$fh=fopen($fname, 'rb');
 	fpassthru($fh);
 } else {

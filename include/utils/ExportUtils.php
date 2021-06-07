@@ -72,7 +72,7 @@ function getPermittedFieldsQuery($module, $disp_view) {
 }
 
 /**
- * Function to exporting csv rows file format for modules.
+ * Function to exporting XLS rows file format for modules.
  * @param object $rowsonfo object contain rows to export
  * @param string $modulename - module name
  * @param array $fieldinfo - fields info list
@@ -97,7 +97,7 @@ function exportExcelFileRows($rowsonfo, $totalxclinfo, $fldname, $fieldinfo, $mo
 		'font' => array('bold' => true)
 	);
 
-	if (isset($rowsonfo)) {
+	if (!empty($rowsonfo)) {
 		$FieldDataTypes = array();
 		foreach ($rowsonfo[0] as $hdr => $value) {
 			if (!isset($fieldinfo[$hdr])) {
@@ -313,13 +313,21 @@ function dumpRowsToXLS($type, $__processor = '', $columnsToExport, $translated_f
 	global $adb;
 
 	$xlsrows = array();
+	$column_arr = array();
+	$field_list = array();
 	while ($val = $adb->fetchByAssoc($result, -1, false)) {
 		$new_arr = array();
 		if ($__processor != '') {
 			$val = $__processor->sanitizeValues($val);
 		}
-		for ($i=0; $i<sizeof($translated_fields_array); $i++) {
-			$new_arr[$translated_fields_array[$i]] = $val[$columnsToExport[$i]];
+		foreach ($columnsToExport as $col) {
+			$column_arr[] = $col;
+		}
+		foreach ($translated_fields_array as $field_arr) {
+			$field_list[] = $field_arr;
+		}
+		for ($i = 0; $i < sizeof($field_list); $i++) {
+			$new_arr[$field_list[$i]] = $val[$column_arr[$i]];
 		}
 		$xlsrows[] = $new_arr;
 	}
