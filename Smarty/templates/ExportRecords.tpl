@@ -100,22 +100,21 @@
 												</td>
 												{/if}
 											</tr>
+											<tr>
+												<td colspan="2" align="left" valign="top" style="padding-left:40px;">
+													<span class="genHeaderSmall">{$APP.LBL_SEARCH_CRITERIA_COLUMNS}:</span>
+												</td>
+											</tr>
+											<tr>
+												<td width="50%" class="small cblds-p_large cblds-t-align_right">{$APP.LBL_VISIBLE_COLUMNS}</td>
+												<td width="5%" class="small cblds-p_large">
+													<input type="checkbox" name="visiblecolumns">
+												</td>
+											</tr>
 											{if $MODULE eq 'Users' || $MODULE eq 'Workflow'}
-												<input type="hidden" name="visiblecolumns">
-												<input type="hidden" name="exportfile" value="exportexcelfile" checked>
+												<input type="hidden" name="exportfile" value="exportexcelfile">
 												<input type="hidden" name="exportfile" value="exportcsvfile">
 											{else}
-												<tr>
-													<td colspan="2" align="left" valign="top" style="padding-left:40px;">
-														<span class="genHeaderSmall">{$APP.LBL_SEARCH_CRITERIA_COLUMNS}:</span>
-													</td>
-												</tr>
-												<tr>
-													<td width="50%" class="small cblds-p_large cblds-t-align_right">{$APP.LBL_VISIBLE_COLUMNS}</td>
-													<td width="5%" class="small cblds-p_large">
-														<input type="checkbox" name="visiblecolumns">
-													</td>
-												</tr>
 												<tr>
 													<td colspan="2" align="left" valign="top" style="padding-left:40px;">
 														<span class="genHeaderSmall">{$APP.LBL_EXPORT_FORMAT}:</span>
@@ -124,13 +123,13 @@
 												<tr>
 													<td align="right" valign="top" width="50%" class="small cblds-p_large cblds-t-align_right">{$APP.LBL_EXPORT_FILE_IN_EXCEL_FORMAT}</td>
 													<td align="left" valign="top" width="5%" class="small cblds-p_large">
-														<input type="radio" name="exportfile" value="exportexcelfile" checked>
+														<input type="radio" name="exportfile" value="exportexcelfile">
 													</td>
 												</tr>
 												<tr>
 													<td align="right" valign="top" width="50%" class="small cblds-p_large cblds-t-align_right">{$APP.LBL_EXPORT_FILE_IN_CSV_FORMAT}</td>
 													<td align="left" valign="top" width="5%" class="small cblds-p_large">
-														<input type="radio" name="exportfile" value="exportcsvfile">
+														<input type="radio" name="exportfile" value="exportcsvfile" checked>
 													</td>
 												</tr>
 											{/if}
