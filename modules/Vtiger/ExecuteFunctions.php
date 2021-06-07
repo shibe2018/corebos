@@ -122,25 +122,26 @@ switch ($functiontocall) {
 		$recordid = vtlib_purify($_REQUEST['record']);
 		$module = vtlib_purify($_REQUEST['module']);
 		include 'include/utils/ExportUtils.php';
-		if (GlobalVariable::getVariable('Comments_Export_Format', 'XLS', $module) == 'CSV') {
+		if (GlobalVariable::getVariable('ModComments_DefaultBlockStatus', 'CSV', $module) == 'CSV') {
 			header('Content-Disposition:attachment;filename="Comments'.$recordid.'.csv"');
 			header('Content-Type:text/csv;charset=UTF-8');
 			header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 			header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
 			header('Cache-Control: post-check=0, pre-check=0', false);
 			exportUserCommentsForModule($module, $recordid, 'CSV');
-			exit;
 		} else {
 			global $root_directory, $cache_dir;
 			$fname = tempnam($root_directory.$cache_dir, 'comm.xls');
-			exportUserCommentsForModule($module, $recordid, 'XLS')->save($fname);
+			$xlscontents = exportUserCommentsForModule($module, $recordid, 'XLS');
+			$xlscontents->save($fname);
 			header('Content-Type: application/x-msexcel');
 			header('Content-Length: '.@filesize($fname));
 			header('Content-disposition: attachment; filename="Comments'.$recordid.'.xls"');
 			$fh=fopen($fname, 'rb');
 			fpassthru($fh);
-			exit;
+			
 		}
+		exit;
 		break;
 	case 'ValidationExists':
 		$valmod = vtlib_purify($_REQUEST['valmodule']);
