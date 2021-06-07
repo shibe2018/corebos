@@ -118,8 +118,7 @@ function exportUserCommentsForModule($module, $recordid, $format, $field_arr = a
 			echo $header;
 			dumpRowsToCSV($module, $CSV_Separator, $columnsToExport, $queryres, $focus);
 		} else {
-			$dumprows = dumpRowsToXLS($module, '', $columnsToExport, $translated_fields_array, $queryres);
-			return $dumprows;
+			return dumpRowsToXLS($module, '', $columnsToExport, $translated_fields_array, $queryres);
 		}
 	}
 	return true;
