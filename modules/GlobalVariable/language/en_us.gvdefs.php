@@ -139,6 +139,13 @@ $GlobalVariableDefinitons = array(
 	'values' => 'All | Last5 | Mine',
 	'definition' => '"All" (default value) will show all comments related to the record, "Last5" will show only the last 5 comments and "Mine" will show all comments of the current user.',
 ),
+'Comments_Export_Format' => array(
+	'status' => 'Implemented',
+	'valuetype' => 'String',
+	'category' => 'Application',
+	'values' => 'CSV | XLS',
+	'definition' => 'This variable decides if we export by XLS or export by CSV. The default value is CSV',
+),
 'Application_TrackerMaxHistory' => array(
 	'status' => 'Implemented',
 	'valuetype' => 'Integer',
@@ -1664,13 +1671,6 @@ $GlobalVariableDefinitons = array(
 	'category' => 'Application',
 	'values' => 'strict | loose | clean',
 	'definition' => 'This variable decides if we strictly/loosely check for the security issue in an image file or ignore the check and clean the image.',
-),
-'Comments_Export_Format' => array(
-	'status' => 'Implemented',
-	'valuetype' => 'String',
-	'category' => 'Application',
-	'values' => 'CSV | XLS',
-	'definition' => 'This variable decides if we export by XLS or export by CSV. The default value is XLS',
 ),
 );
 
